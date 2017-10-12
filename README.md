@@ -1,5 +1,5 @@
 # PMLProject
-Course Project - DSC PML - <a href="https://dday76.github.io/PMLProject/">This page/a>
+Course Project - DSC PML - <a href="https://dday76.github.io/PMLProject/">This page</a>
 <br />
 Welcome graders. Please click HTML file for the Rmd file output to grade.
 (If you go to the HTML file from the repository, github won't display it properly.)
