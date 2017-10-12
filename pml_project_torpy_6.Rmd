@@ -99,6 +99,7 @@ fit_dt <- train(classe~.,data=ex_train3,method="rpart",trControl=tcon)
 fit_rf <- train(classe~.,data=ex_train3,method="rf",ntree=I(2*ncol(ex_train3)),trControl=tcon)
 # boosting - 12.6MB
 #fit_gb <- train(classe~.,data=ex_train3,trControl=tcon,method='gbm')
+# garbage method below captures all the boosting iterations so they aren't shown.
 garbage <- capture.output(
   train <- fit_gb <- train(classe~.,data=ex_train3,trControl=tcon,method='gbm'))
 
@@ -174,6 +175,9 @@ pred_key2_results <- data.frame(problem_id=key_raw2$problem_id,RFprediction=pred
 
 Given 160 variables to interpret, we were able to remove administrative entries, missing values, and near-zero-impact values. After narrowing to 52 predictors, we tried 3 models with 5-fold cross-validation, eventually choosing Random Forest. The RF approach had near-100% expected accuracy and under 1% out of sample error. Reviewing sample error is a suggested next step as well as gathering additional data on the NA dimensions.
 
+---
+
+---
 
 # Appendices - Optional for graders' convenience
 

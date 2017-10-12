@@ -127,7 +127,7 @@ $(document).ready(function () {
 <h1>Main Body</h1>
 <div id="executive-summary" class="section level2">
 <h2>Executive Summary</h2>
-<p>In this project, we seek prediction for the variable classe in weight lifting data. We reviewed several models, settling on the Random Forest as the best predictor. We found nearly 100% Accuracy with less than 1% out of sample error. Cross-validation was included (K=5, though cv is technically inherent to Random Forest). These outcomes, while not perfect, were superior to the other models and sufficient for our prediction requirements without excessive computing complexity.</p>
+<p>In this project, we seek prediction for the variable classe in weight lifting data. We reviewed several models, settling on the Random Forest as the best predictor. We found nearly 100% Accuracy with less than 1% out of sample error. Cross-validation was included (K=5, though cv is technically inherent to Random Forest). These outcomes, while not perfect, were superior to the other models and sufficient for our prediction requirements without excessive computing complexity</p>
 <p><em>Grading note: Word count is well under 2000, even with code, and there are 4 figures in the body of the report (Accuracy, C results, final fit model with OOB, and a chart of importance). The Appendices are optional and have additional figures should you wish to review them.</em></p>
 <div id="project-instructions" class="section level3">
 <h3>Project Instructions</h3>
@@ -192,6 +192,7 @@ fit_dt &lt;- train(classe~.,data=ex_train3,method=&quot;rpart&quot;,trControl=tc
 fit_rf &lt;- train(classe~.,data=ex_train3,method=&quot;rf&quot;,ntree=I(2*ncol(ex_train3)),trControl=tcon)
 # boosting - 12.6MB
 #fit_gb &lt;- train(classe~.,data=ex_train3,trControl=tcon,method='gbm')
+# garbage method below captures all the boosting iterations so they aren't shown.
 garbage &lt;- capture.output(
   train &lt;- fit_gb &lt;- train(classe~.,data=ex_train3,trControl=tcon,method='gbm'))</code></pre>
 <p>Given we have three models set, we now move to generate predictions based on those models and prepare a Confusion Matrix to see how well the predictions performed.</p>
@@ -255,7 +256,7 @@ ex_all3 &lt;- data.frame(rbind(ex_train3,ex_test3))
 pred_rf_all3 &lt;- predict(fit_rf, newdata=ex_all3)
 # calculate oose to be displayed below, predictions of chosen model versus all values, not just test
 oose &lt;- sum(pred_rf_all3 != ex_all3$classe)/length(ex_all3$classe)</code></pre>
-<p><strong>In calculations above, we find the Out of Sample error by RMSE is 0.17 %</strong></p>
+<p><strong>In calculations above, we find the Out of Sample error is 0.17 %</strong></p>
 <p>Finally, We need to test and see how things came out against the validation data.</p>
 <pre class="r"><code>fit_rf$finalModel</code></pre>
 <pre><code>## 
@@ -285,6 +286,8 @@ pred_key2_results &lt;- data.frame(problem_id=key_raw2$problem_id,RFprediction=p
 <div id="conclusion" class="section level2">
 <h2>Conclusion</h2>
 <p>Given 160 variables to interpret, we were able to remove administrative entries, missing values, and near-zero-impact values. After narrowing to 52 predictors, we tried 3 models with 5-fold cross-validation, eventually choosing Random Forest. The RF approach had near-100% expected accuracy and under 1% out of sample error. Reviewing sample error is a suggested next step as well as gathering additional data on the NA dimensions.</p>
+<hr />
+<hr />
 </div>
 </div>
 <div id="appendices---optional-for-graders-convenience" class="section level1">
